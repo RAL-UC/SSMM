@@ -1,0 +1,11 @@
+<mujocoinclude>
+  <actuator>
+	<!-- Bunker wheels -->
+    <motor name="w_rr" joint="w_rr_joint" gear="1" ctrllimited="true" ctrlrange="-100 100" />
+    <motor name="w_rc" joint="w_rc_joint" gear="1" ctrllimited="true" ctrlrange="-100 100" />
+    <motor name="w_rf" joint="w_rf_joint" gear="1" ctrllimited="true" ctrlrange="-100 100" />
+    <motor name="w_lr" joint="w_lr_joint" gear="1" ctrllimited="true" ctrlrange="-100 100" />
+    <motor name="w_lc" joint="w_lc_joint" gear="1" ctrllimited="true" ctrlrange="-100 100" />
+    <motor name="w_lf" joint="w_lf_joint" gear="1" ctrllimited="true" ctrlrange="-100 100" />
+  </actuator>
+</mujocoinclude>

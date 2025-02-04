@@ -1,0 +1,143 @@
+<!--
+# Model and simulate a dual-arm mobile manipulator
+# 
+# Arms:        Franka Research 3 (FR3) by Franka Emika
+# Mobile base: Bunker by Agilex
+#
+# Model information is contained in the XML model files.
+#
+# Requires MuJoCo and OpenGL
+# 
+# Verion 1.0  - 2025.02.03 
+#
+''' Copyright (c) 2025 Miguel Torres-Torriti under MIT License. See LICENSE.txt file '''
+''' Source: '''
+#
+# GENERAL DESCRIPTION OF THE DUAL-ARM MOBILE MANIPULATOR MUJOCO MODEL 
+#
+# FR3 arms employ the model in Mujoco Menangerie:
+#    https://github.com/google-deepmind/mujoco_menagerie/tree/main/franka_fr3
+# which is derived from the publicly available URDF description available at:
+#   https://github.com/frankaemika/franka_description
+# 
+# An older model of the arms, based on the Panda Arm (or Franka Emika Robot FER), which
+# includes the Franka Hand can be found at:
+#   https://github.com/vikashplus/franka_sim
+#
+# The mobile base model is derived from the Agilex Robotics description found at:
+#   https://github.com/agilexrobotics/ugv_gazebo_sim/tree/master/bunker/bunker_description
+#
+# - The Dual-Arm Mobile Manipulator Model inherits settings from the FR3 and Bunker 
+#   Mujoco models.
+# - The accuracy of the original model parameters has not been verified.
+# - The model descriptions and assets are contained in folders:
+#    assets/FR3 and assets/agilex_bunker
+# - To use the assests in "../assets/.." the following Mujoco compiler option was
+#   included:
+#    '<compiler ... meshdir="assets" ... />'
+# - The main model file is DAMM1.xml, and the model was divided into subfiles:
+#     Mobile Base: <include file='assets/agilex_bunker/agilex_bunker_body.xml'/>
+#              Arm 1: <include file="assets/FR3/FR3_body.xml"/>
+#              Arm 2: <include file="assets/FR3/FR3_body_2.xml"/>
+#
+# - To change the position of the arms on the mobile base, simply update the posistion 
+#   specification in the lines below:
+#     <body name="arm_base_1" childclass="fr3" pos="0.05 0 0.42">
+#     <body name="arm_base_2" childclass="fr3" pos="-0.3 0 0.42">
+#   
+#   Note, the current configuration has one arm in front and the other at the rear of the 
+#   mobile base.
+# - Actuators are all specified as motors, and are contained in the corresponding assets
+#   subdirectories:
+#     	<include file='assets/agilex_bunker/agilex_bunker_actuators.xml'/>
+#       <include file='assets/FR3/FR3_actuators.xml'/>
+#    	<include file='assets/FR3/FR3_actuators_2.xml'/> 
+# 
+# - The model does not include sensors nor other settings.  The goal was to keep it as 
+#   simple as possible. 
+#
+
+-->
+
+<mujoco model="Dual-Arm Mobile Manipulator">
+  <!-- Compiler options -->
+  <compiler angle="radian" meshdir="assets" coordinate="local" autolimits="true"/>
+
+  <!-- Integrator options -->
+  <option timestep="0.01" cone="elliptic"/>
+
+  <!-- Scale rendering extent and override model center to get blurry (infinite looking)
+       world limits.  Remove the following line for sharper edges -->
+  <statistic center="1.8 -3.5 2.4" extent=".8"/>
+
+  <!-- Visual options -->
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="120" elevation="-20"/>
+  </visual>
+
+  <!-- Presets -->
+  <default>
+    <default class="agilex_bunker">
+		<material specular="0.5" shininess="0.25"/>
+	</default>
+  </default>
+  
+  <default>
+    <default class="fr3">
+      <joint armature="0.1" damping="1"/>
+      <position inheritrange="1"/>
+      <default class="visual">
+        <geom type="mesh" group="2" contype="0" conaffinity="0"/>
+      </default>
+      <default class="collision">
+        <geom type="mesh" group="3" mass="0" density="0"/>
+      </default>
+      <site size="0.001" rgba="0.5 0.5 0.5 0.3" group="4"/>
+    </default>
+  </default>
+ 
+  <!-- Assets and textures definitions -->
+  <asset>
+  
+	<!-- General scene meshes and materials -->
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3" markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+
+  </asset>
+
+
+  <include file="assets/agilex_bunker/agilex_bunker_assets.xml"/>
+  <include file="assets/FR3/FR3_assets.xml"/>
+   
+  <!-- Worldbody and bodies definitions -->
+  <worldbody>
+    <light name="spotlight" mode="targetbodycom" target="mobile_base" pos="0 0 100" castshadow="false"/>
+    <geom conaffinity="1" condim="3" name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+
+    <!-- Agilex Bunker -->
+	<body name="mobile_base" pos="0 0 .538" euler="0 0 0">
+		<include file='assets/agilex_bunker/agilex_bunker_body.xml'/>
+		
+		<body name="arm_base_1" childclass="fr3" pos="0.05 0 0.42">
+			<include file="assets/FR3/FR3_body.xml"/>
+		</body>
+	
+		<body name="arm_base_2" childclass="fr3" pos="-0.3 0 0.42">
+			<include file="assets/FR3/FR3_body_2.xml"/>
+		</body>
+		
+	</body>
+
+  </worldbody>
+
+  <!-- Actuators -->
+  
+	<!-- Bunker wheels -->
+	<include file='assets/agilex_bunker/agilex_bunker_actuators.xml'/>
+    <include file='assets/FR3/FR3_actuators.xml'/>
+	<include file='assets/FR3/FR3_actuators_2.xml'/>
+
+</mujoco>

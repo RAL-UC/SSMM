@@ -1,0 +1,54 @@
+<mujoco model="Agilex Bunker">
+  <!-- Compiler options -->
+  <compiler angle="radian" meshdir="assets" coordinate="local" autolimits="true"/>
+
+  <!-- Integrator options -->
+  <option timestep="0.01" cone="elliptic"/>
+
+  <!-- Visual options -->
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.1 0.1 0.1" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="120" elevation="-20"/>
+  </visual>
+
+  <!-- Presets -->
+
+  <default>
+    <default class="agilex_bunker">
+		<material specular="0.5" shininess="0.25"/>
+	</default>
+  </default>
+	
+  
+  <!-- Assets and textures definitions -->
+  <asset>
+  
+	<!-- General scene meshes and materials -->
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3" markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+
+  </asset>
+
+
+  <include file="assets/agilex_bunker/agilex_bunker_assets.xml"/>
+ 
+  <!-- Worldbody and bodies definitions -->
+  <worldbody>
+    <light name="spotlight" mode="targetbodycom" target="mobile_base" pos="0 0 100" castshadow="false"/>
+    <geom conaffinity="1" condim="3" name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+
+    <!-- Agilex Bunker -->
+	<body name="mobile_base" pos="0 0 .538" euler="0 0 0">
+		<include file='assets/agilex_bunker/agilex_bunker_body.xml'/>
+	</body>
+
+  </worldbody>
+
+  <!-- Actuators -->
+  
+	<!-- Bunker wheels -->
+	<include file='assets/agilex_bunker/agilex_bunker_actuators.xml'/>
+	
+</mujoco>

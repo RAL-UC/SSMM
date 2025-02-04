@@ -1,0 +1,34 @@
+<mujoco model="fr3">
+  <compiler angle="radian" meshdir="assets"/>
+
+  <option integrator="implicitfast"/>
+
+  <default>
+    <default class="fr3">
+      <joint armature="0.1" damping="1"/>
+      <position inheritrange="1"/>
+      <default class="visual">
+        <geom type="mesh" group="2" contype="0" conaffinity="0"/>
+      </default>
+      <default class="collision">
+        <geom type="mesh" group="3" mass="0" density="0"/>
+      </default>
+      <site size="0.001" rgba="0.5 0.5 0.5 0.3" group="4"/>
+    </default>
+  </default>
+ 
+  <include file="assets/FR3/FR3_assets.xml"/>
+
+  <worldbody>
+    <body name="arm_base" childclass="fr3">
+		<include file="assets/FR3/FR3_body.xml"/>
+    </body>
+  </worldbody>
+
+  <!-- Actuators -->
+	<include file='assets/FR3/FR3_actuators.xml'/>
+
+  <keyframe>
+    <key name="home" qpos="0 0 0 -1.57079 0 1.57079 -0.7853" ctrl="0 0 0 -1.57079 0 1.57079 -0.7853"/>
+  </keyframe>
+</mujoco>
