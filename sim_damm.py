@@ -7,10 +7,10 @@
 #
 # Requires MuJoCo and OpenGL
 # 
-# Verion 1.0  - 2025.02.03 
+# Version 1.0  - 2025.02.03 
 #
-''' Copyright (c) 2025 Miguel Torres-Torriti under MIT License. See LICENSE.txt file '''
-''' Source: '''
+''' Copyright (c) 2025 Miguel Torres-Torriti under MIT License. See LICENSE.txt file. '''
+''' Source: https://github.com/RAL-UC/SSMM'''
 
 import mujoco
 from mujoco.glfw import glfw
