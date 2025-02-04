@@ -17,7 +17,7 @@ Version 1.0  - 2025.02.03
 *Source: https://github.com/RAL-UC/SSMM*
 
 ---
-[Dual-arm mobile manipulator](DAMM.png)
+![Dual-arm mobile manipulator](images/DAMM.png)
 
 ---
 ## GENERAL DESCRIPTION OF THE DUAL-ARM MOBILE MANIPULATOR MuJoCo MODEL 
