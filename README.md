@@ -21,13 +21,13 @@ Version 1.0  - 2025.02.03
 ## GENERAL DESCRIPTION OF THE DUAL-ARM MOBILE MANIPULATOR MUJOCO MODEL 
 
 FR3 arms employ the model in Mujoco Menangerie:
-   https://github.com/google-deepmind/mujoco_menagerie/tree/main/franka_fr3
+   https://github.com/google-deepmind/mujoco_menagerie/tree/main/franka_fr3,
 which is derived from the publicly available URDF description available at:
-   https://github.com/frankaemika/franka_description
+   https://github.com/frankaemika/franka_description.
  
 An older model of the arms, based on the Panda Arm (or Franka Emika Robot FER), which
 includes the Franka Hand can be found at:
-   https://github.com/vikashplus/franka_sim
+   https://github.com/vikashplus/franka_sim.
 
 The mobile base model is derived from the Agilex Robotics description found at:
    https://github.com/agilexrobotics/ugv_gazebo_sim/tree/master/bunker/bunker_description
@@ -37,11 +37,11 @@ The mobile base model is derived from the Agilex Robotics description found at:
 - The accuracy of the original model parameters has not been verified.
 - The model descriptions and assets are contained in folders:
 
-             assets/FR3 and assets/agilex_bunker
+             ../assets/FR3, ../assets/agilex_bunker
 	 
 - To use the assests in "../assets/.." the following Mujoco compiler option was included:
 
-    '<compiler ... meshdir="assets" ... />'
+             '<compiler ... meshdir="assets" ... />'
 	
 - The main model file is DAMM1.xml, and the model was divided into subfiles:
 
