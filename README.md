@@ -8,6 +8,15 @@ Mobile base: Bunker by Agilex
 
 The model information is contained in the XML model files.
 
+The simulation of the DAMM illustrates how to implement a 
+motion controller to drive the mobile base to a target position,
+while simultaneously controlling the arms with a simple joint
+PD controller. More information about the controllers is contained
+in the code comments. The arms and base controllers can be replaced
+by more advanced controllers, e.g. optimal controllers in the
+operational space.
+
+
 Requires Python 3.x, MuJoCo 3.1.3, OpenGL.
 
 Version 1.0  - 2025.02.03 
