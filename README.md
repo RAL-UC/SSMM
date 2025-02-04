@@ -13,6 +13,7 @@ Requires Python 3.x, MuJoCo 3.1.3, OpenGL
 Version 1.0  - 2025.02.03 
 
 *Copyright (c) 2025 Miguel Torres-Torriti under MIT License. See LICENSE.txt file.*
+
 *Source: https://github.com/RAL-UC/SSMM*
 
 ---
