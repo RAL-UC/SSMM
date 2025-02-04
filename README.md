@@ -37,7 +37,7 @@ The mobile base model is derived from the Agilex Robotics description found at:
 - The accuracy of the original model parameters has not been verified.
 - The model descriptions and assets are contained in folders:
 
-     assets/FR3 and assets/agilex_bunker
+             assets/FR3 and assets/agilex_bunker
 	 
 - To use the assests in "../assets/.." the following Mujoco compiler option was included:
 
@@ -45,7 +45,7 @@ The mobile base model is derived from the Agilex Robotics description found at:
 	
 - The main model file is DAMM1.xml, and the model was divided into subfiles:
 
-     Mobile Base: <include file='assets/agilex_bunker/agilex_bunker_body.xml'/>
+            Mobile Base: <include file='assets/agilex_bunker/agilex_bunker_body.xml'/>
 	 
               Arm 1: <include file="assets/FR3/FR3_body.xml"/>
 			  
