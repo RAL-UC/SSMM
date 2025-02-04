@@ -1,14 +1,14 @@
 # SSMM
-Skid Steer Mobile Manipulator (SSMM) Modeling in MuJoCo
+Skid Steer Mobile Manipulator (SSMM) Modeling in MuJoCo.
 
-Model and simulate a dual-arm mobile manipulator
+Model and simulate a dual-arm mobile manipulator (DAMM).
  
 Arms:        Franka Research 3 (FR3) by Franka Emika
 Mobile base: Bunker by Agilex
 
 The model information is contained in the XML model files.
 
-Requires Python 3.x, MuJoCo 3.1.3, OpenGL
+Requires Python 3.x, MuJoCo 3.1.3, OpenGL.
 
 Version 1.0  - 2025.02.03 
 
@@ -18,9 +18,9 @@ Version 1.0  - 2025.02.03
 
 ---
 
-## GENERAL DESCRIPTION OF THE DUAL-ARM MOBILE MANIPULATOR MUJOCO MODEL 
+## GENERAL DESCRIPTION OF THE DUAL-ARM MOBILE MANIPULATOR MuJoCo MODEL 
 
-FR3 arms employ the model in Mujoco Menangerie:
+FR3 arms employ the model in MuJoCo Menangerie:
    https://github.com/google-deepmind/mujoco_menagerie/tree/main/franka_fr3,
 which is derived from the publicly available URDF description available at:
    https://github.com/frankaemika/franka_description.
@@ -39,7 +39,7 @@ The mobile base model is derived from the Agilex Robotics description found at:
 
              ../assets/FR3, ../assets/agilex_bunker
 	 
-- To use the assests in "../assets/.." the following Mujoco compiler option was included:
+- To use the assests in "../assets/.." the following MuJoCo compiler option was included:
 
              '<compiler ... meshdir="assets" ... />'
 	
@@ -53,19 +53,30 @@ The mobile base model is derived from the Agilex Robotics description found at:
 			  
 - To change the position of the arms on the mobile base, simply update the posistion 
   specification in the lines below:
-     <body name="arm_base_1" childclass="fr3" pos="0.05 0 0.42">
-     <body name="arm_base_2" childclass="fr3" pos="-0.3 0 0.42">
+    
+   	         <body name="arm_base_1" childclass="fr3" pos="0.05 0 0.42">
+             <body name="arm_base_2" childclass="fr3" pos="-0.3 0 0.42">
    
    Note, the current configuration has one arm in front and the other at the rear of the 
    mobile base.
+
 - Actuators are all specified as motors, and are contained in the corresponding assets 
   subdirectories:
   
-     <include file='assets/agilex_bunker/agilex_bunker_actuators.xml'/>
+             <include file='assets/agilex_bunker/agilex_bunker_actuators.xml'/>
 	 
-     <include file='assets/FR3/FR3_actuators.xml'/>
+             <include file='assets/FR3/FR3_actuators.xml'/>
 	 
-     <include file='assets/FR3/FR3_actuators_2.xml'/> 
+             <include file='assets/FR3/FR3_actuators_2.xml'/> 
 	 
  
 - The model does not include sensors nor other settings.  The goal was to keep it as simple as possible. 
+
+---
+## RUNNING THE MODEL
+
+Simply execute **sim_damm.py** from the terminal.
+
+To visualize the MuJoCo model in the XML file simply drag-and-drop the **DAMM1.XML** file onto the MuJoCo's `simulate` user-interface.
+
+           
