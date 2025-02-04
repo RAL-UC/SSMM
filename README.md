@@ -54,7 +54,7 @@ The mobile base model is derived from the Agilex Robotics description found at:
 - To change the position of the arms on the mobile base, simply update the posistion 
   specification in the lines below:
     
-   	         <body name="arm_base_1" childclass="fr3" pos="0.05 0 0.42">
+             <body name="arm_base_1" childclass="fr3" pos="0.05 0 0.42">
              <body name="arm_base_2" childclass="fr3" pos="-0.3 0 0.42">
    
    Note, the current configuration has one arm in front and the other at the rear of the 
