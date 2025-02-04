@@ -82,6 +82,7 @@ Simply execute **sim_damm.py** from the terminal.
 To visualize the MuJoCo model in the XML file simply drag-and-drop the **DAMM1.XML** file onto the MuJoCo's `simulate` user-interface.
 
 *A short tutorial on MuJoCo's XML file for model description can be found in file [L03_tutorial_mujoco.pdf](L03_tutorial_mujoco.pdf).*
+
 ---
 ![Dual-arm mobile manipulator, another view.](images/DAMM1.png)
 ![Dual-arm mobile manipulator, in MuJoCo's simulation user-interface.](images/DAMM2.png)
